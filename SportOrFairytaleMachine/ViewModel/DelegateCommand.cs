@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
-namespace WPFMVVMStarter.ViewModel
+namespace SportOrFairytaleMachine.ViewModel
 {
     /// <summary>
     /// ICommand implementation that can be used for nearly all kind of function signaturs

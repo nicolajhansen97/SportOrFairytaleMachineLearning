@@ -19,6 +19,6 @@
             <RowDefinition Height='10*'></RowDefinition>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Background="Gray" Content="{Binding LoadFile}" Command="{Binding openFileChooser}" HorizontalContentAlignment='Center' VerticalContentAlignment="Center" FontSize="20"></Button>
-        <TextBox Grid.Row="1" Name="txtEditor" />
+        <TextBox Grid.Row="1" Name="txtEditor" Text="{Binding TextBox}" />
     </Grid>
 </UserControl>

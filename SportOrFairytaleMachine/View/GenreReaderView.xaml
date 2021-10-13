@@ -18,7 +18,20 @@
             <RowDefinition Height='1*'></RowDefinition>
             <RowDefinition Height='10*'></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Background="Gray" Content="{Binding LoadFile}" Command="{Binding openFileChooser}" HorizontalContentAlignment='Center' VerticalContentAlignment="Center" FontSize="20"></Button>
-        <TextBox Grid.Row="1" Name="txtEditor" Text="{Binding TextBox}" />
+        <Button Grid.Row="0" Background="Gray" Content="{Binding LoadFile}" Command="{Binding openFileChooser}" HorizontalContentAlignment='Center' VerticalContentAlignment="Center" FontSize="20" Grid.ColumnSpan="2"></Button>
+        <TextBox Grid.Row="1" Name="txtEditor" Text="{Binding TextBox}" Grid.ColumnSpan="2" />
+        <ListView Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding DistanceList}">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type model:DistanceModel}">
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Distance" Width="200" DisplayMemberBinding="{Binding Distance}"/>
+                    <GridViewColumn Header="Type" Width="200" DisplayMemberBinding="{Binding Type}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
     </Grid>
 </UserControl>

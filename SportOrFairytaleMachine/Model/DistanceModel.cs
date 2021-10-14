@@ -4,6 +4,7 @@ using System.Text;
 
 namespace SportOrFairytaleMachine.Model
 {
+    //Model class. Its used to get the informations and save the informations so it can be used from anywhere.
     class DistanceModel : Bindable
     {
         private double sum;

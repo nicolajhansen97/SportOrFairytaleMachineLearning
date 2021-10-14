@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SportOrFairytaleMachine.View"
         xmlns:model ="clr-namespace:SportOrFairytaleMachine.Model"
         mc:Ignorable="d"
-        d:DesignHeight="450" d:DesignWidth="800">
+        d:DesignHeight="450" d:DesignWidth="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width='1*'></ColumnDefinition>
@@ -27,11 +27,10 @@
             </ListView.ItemTemplate>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Distance" Width="200" DisplayMemberBinding="{Binding Distance}"/>
-                    <GridViewColumn Header="Type" Width="200" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="Distance" Width="250" DisplayMemberBinding="{Binding Distance}"/>
+                    <GridViewColumn Header="Type" Width="250" DisplayMemberBinding="{Binding Type}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        
     </Grid>
 </UserControl>

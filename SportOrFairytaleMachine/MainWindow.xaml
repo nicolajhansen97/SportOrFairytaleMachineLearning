@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:SportOrFairytaleMachine" 
         xmlns:viewmodel="clr-namespace:SportOrFairytaleMachine.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="1000">
     <Window.DataContext>
         <viewmodel:MainViewModel/>
     </Window.DataContext>
     <StackPanel>
-        <ContentControl Width="800" Height="450" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding CurrentView}"></ContentControl>
+        <ContentControl Width="1000" Height="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding CurrentView}"></ContentControl>
     </StackPanel>
 </Window>

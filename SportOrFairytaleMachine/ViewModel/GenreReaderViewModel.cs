@@ -18,9 +18,7 @@ namespace SportOrFairytaleMachine.ViewModel
 
         bool[] vectorArray;
         bool[] unknownVectorArray;
-        List<double> distanceSortList = new List<double>();
-
-
+        
         private ObservableCollection<DistanceModel> distanceList = new ObservableCollection<DistanceModel>();
         public ObservableCollection<DistanceModel> DistanceList
         {
@@ -84,6 +82,7 @@ namespace SportOrFairytaleMachine.ViewModel
             {
                 textTest = File.ReadAllText(openFileDialog.FileName);
             }
+            TextBox = textTest;
 
             //This will remove all ., etc which we dont want into our list. It will also split the text so only 1 word will be on each line.
             fixedInput = Regex.Replace(textTest, "[^a-zA-Z0-9% ._]", string.Empty);
@@ -157,7 +156,6 @@ namespace SportOrFairytaleMachine.ViewModel
             {
                 AllWordsDictonary.Add(line);
             }
-            TextBox = string.Join(Environment.NewLine, words);
         }
 
         //This method will read all textes and save it all into one single file which will be used as the dictonary. 
@@ -265,11 +263,13 @@ namespace SportOrFairytaleMachine.ViewModel
                 DistanceList.Add(CalculateInfo(vectorArray, unknownVectorArray, typeOfText));
 
 
+
                 using (var file = new StreamWriter(desktop + fairyTale + "Vector.txt"))
                 {
                     vectorList.ForEach(v => file.WriteLine(v));
                 }
             }
+            knnAlgo();
         }
         private DistanceModel CalculateInfo (bool[] textArray, bool[] uknownTextArray, string StoryType)
         {
@@ -283,21 +283,48 @@ namespace SportOrFairytaleMachine.ViewModel
             double distance = Math.Sqrt(dm.Sum);
             dm.Distance = distance;
             dm.Type = StoryType;
-            distanceSortList.Add(distance);
-
-            knnAlgo();
+       
             return dm;
         }
 
         private void knnAlgo()
         {
-            distanceSortList = distanceSortList.OrderBy(p => p).ToList();
-            for (int i = 0; i < 6; i++)
+            int fairytaleScore = 0;
+            int sportScore = 0;
+            double chanceForRight = 0;
+
+            List<DistanceModel> distanceSortList = new List<DistanceModel>();
+
+            distanceSortList = distanceList.ToList();
+            distanceSortList = distanceSortList.OrderBy((dm) => dm.Distance).ToList();
+
+            for (int i = 0; i < 5; i++)
+            {
+                if (distanceSortList[i].Type.Equals("Fairytale"))
+                    {
+                    fairytaleScore++;
+                }
+                else
+                {
+                    sportScore++;
+                }
+            }
+
+           chanceForRight = Math.Max(fairytaleScore, sportScore);
+            chanceForRight = (chanceForRight / 5) * 100;
+
+            if(fairytaleScore > sportScore)
             {
 
+                MessageBox.Show("Your unknown text is a fairytale! I am " + chanceForRight + "% sure!");
             }
-            
-
+            else
+            {
+                MessageBox.Show("Your unknown text is a Sport article! I am " + chanceForRight + "% sure!");
+            }
+            sportScore = 0;
+            fairytaleScore = 0;
+            chanceForRight = 0;
         }
     }
 }
